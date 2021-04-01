@@ -11,20 +11,14 @@ include 'DB_moves.php';
 <body>
 	<?php
 
-	$query ="SELECT * FROM `users` WHERE `bdate` >= '1990-08-08' ";
-	$result=$pdo->query($query);
-
+	filter();
 	
-    echo "<table><tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr>";
-    while ($row=$result->fetch()) {
-    	 $rows = count($row)/2;
-    	 echo "</tr>";
-    	for ($i=0; $i < $rows; ++$i) { 
-    		echo "<td>$row[$i]</td>";
-    	}
-    }
    
-    echo "</table>";
+    
  ?>
+ <form method="post" name="find_year">
+ 	<input type="textbox" name="year">
+ 	<input type="submit" name="ok" value="поиск">
+ </form>
 </body>
 </html>
