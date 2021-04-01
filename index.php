@@ -10,17 +10,20 @@ include 'DB_moves.php';
 </head>
 <body>
 	<?php
-	$query ="SELECT * FROM users";
-	$result=query($query);
-	 $rows = mysqli_num_rows($result); 
-    echo "<table><tr><th>Id</th><th>first_name</th><th>last_name</th></tr>";
-    for ($i = 0 ; $i < $rows ; ++$i)
-    {
-        $row = mysqli_fetch_row($result);
-        echo "<tr>";
-            for ($j = 0 ; $j < 3 ; ++$j) echo "<td>$row[$j]</td>";
-        echo "</tr>";
+
+	$query ="SELECT * FROM `users` WHERE `bdate` >= '1990-08-08' ";
+	$result=$pdo->query($query);
+
+	
+    echo "<table><tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr>";
+    while ($row=$result->fetch()) {
+    	 $rows = count($row)/2;
+    	 echo "</tr>";
+    	for ($i=0; $i < $rows; ++$i) { 
+    		echo "<td>$row[$i]</td>";
+    	}
     }
+   
     echo "</table>";
  ?>
 </body>
