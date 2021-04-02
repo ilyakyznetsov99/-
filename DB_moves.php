@@ -16,6 +16,7 @@ function filter()
        $stmt->execute(array( $yearfrst,$yearsec ));
 
        $row=$stmt->fetchAll();
+       echo "<H1>  Пользователи(".count($row).")";
     echo "<table><tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr>";
  foreach ($row as $row1) {
     
