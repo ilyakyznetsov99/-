@@ -7,17 +7,23 @@ $pdo=new pdo('mysql:host=localhost;dbname=fp;charset=utf8',$user,$passwd);//по
 function filter()
 {
  if (isset($_POST["year"])) {
-
-    $query ="SELECT * FROM `users` WHERE `bdate` between '".$_POST["year"]."-01-01' and '".$_POST["year"]."-12-31' ";
-    //var_dump($query);
+    $year=$_POST["year"];
+    $yearfrst=$year."-01-01";
+    $yearsec=$year."-12-31";
     global $pdo;
-    $result=$pdo->query($query);
+    $stmt=$pdo->prepare("SELECT * FROM `users` WHERE `bdate` between ? and ?");
+
+       $stmt->execute(array( $yearfrst,$yearsec ));
+
+       $row=$stmt->fetchAll();
     echo "<table><tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr>";
-    while ($row=$result->fetch()) {
-         $rows = count($row)/2;
+ foreach ($row as $row1) {
+    
+         $rows = count($row1)/2;
+
          echo "</tr>";
         for ($i=0; $i < $rows; ++$i) { 
-            echo "<td>$row[$i]</td>";
+            echo "<td>$row1[$i]</td>";
         }
     }
     echo "</table>";
