@@ -4,10 +4,9 @@ $db="fp";
 $user="root";
 $passwd="";
 $pdo=new pdo('mysql:host=localhost;dbname=fp;charset=utf8',$user,$passwd);//подключение
-function filter()
-{
- if (isset($_POST["year"])) {
-    $year=$_POST["year"];
+
+ if (isset($_POST["fyear"])) {
+    $year=$_POST["fyear"];
     $yearfrst=$year."-01-01";
     $yearsec=$year."-12-31";
     global $pdo;
@@ -17,7 +16,7 @@ function filter()
 
        $row=$stmt->fetchAll();
        echo "<H1>  Пользователи(".count($row).")";
-    echo "<table><tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr>";
+    echo "<table name="."tbl"."><tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr>";
  foreach ($row as $row1) {
     
          $rows = count($row1)/2;
@@ -30,5 +29,5 @@ function filter()
     echo "</table>";
    }
 
-}
+
 ?>
