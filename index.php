@@ -28,7 +28,8 @@ if (document.getElementById("output")) {
   						}
   					}
   				var body_off_table=table.insertRow(i+1);
-  				for(key in json_data[i]){
+  				for(key in json_data[i])
+  				{
   					var cells_of_body=body_off_table.insertCell();
   						cells_of_body.innerHTML = json_data[i][key];
   				};
